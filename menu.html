@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .category-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .category-button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .category-button:hover {
+            background-color: #b71c1c;
+        }
+        .menu-item {
+            display: none; /* Initially hide all items */
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-title {
+            font-size: 1.5em;
+            color: #d32f2f;
+        }
+        .item-description {
+            font-size: 1em;
+            color: #555;
+        }
+        .item-price {
+            font-size: 1.2em;
+            color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>KFC Menu</h1>
+</header>
+
+<div class="menu-container">
+    <div class="category-buttons">
+        <button class="category-button" onclick="filterMenu('all')">All</button>
+        <button class="category-button" onclick="filterMenu('chicken')">Chicken</button>
+        <button class="category-button" onclick="filterMenu('sides')">Sides</button>
+        <button class="category-button" onclick="filterMenu('drinks')">Drinks</button>
+    </div>
+
+    <div class="menu-item chicken">
+        <div class="item-title">Original Recipe Chicken</div>
+        <div class="item-description">Our famous chicken, seasoned with a secret blend of 11 herbs and spices.</div>
+        <div class="item-price">$10.99</div>
+    </div>
+
+    <div class="menu-item chicken">
+        <div class="item-title">Extra Crispy Chicken</div>
+        <div class="item-description">Crispy on the outside, juicy on the inside.</div>
+        <div class="item-price">$11.99</div>
+    </div>
+
+    <div class="menu-item sides">
+        <div class="item-title">Mashed Potatoes</div>
+        <div class="item-description">Creamy mashed potatoes with gravy.</div>
+        <div class="item-price">$3.99</div>
+    </div>
+
+    <div class="menu-item sides">
+        <div class="item-title">Coleslaw</div>
+        <div class="item-description">Freshly made coleslaw with a tangy dressing.</div>
+        <div class="item-price">$2.99</div>
+    </div>
+
+    <div class="menu-item drinks">
+        <div class="item-title">Soft Drink</div>
+        <div class="item-description">Choose from a variety of soft drinks.</div>
+        <div class="item-price">$1.99</div>
+    </div>
+
+    <div class="menu-item drinks">
+        <div class="item-title">Iced Tea</div>
+        <div class="item-description">Refreshing iced tea, sweetened or unsweetened.</div>
+        <div class="item-price">$2.49</div>
+    </div>
+</div>
+
+<script>
+    function filterMenu(category) {
+        const items = document.querySelectorAll('.menu-item');
+        items.forEach(item => {
+            if (category === 'all' || item.classList.contains(category)) {
+                item.style.display = 'block'; // Show item
+            } else {
+                item.style.display = 'none'; // Hide item
+            }
+        });
+    }
+
+    // Show all items by default
+    filterMenu('all');
+</script>
+
+</body>
+</html>

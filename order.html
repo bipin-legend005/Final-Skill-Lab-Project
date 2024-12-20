@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC Order Now</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .order-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-title {
+            font-size: 1.2em;
+            color: #d32f2f;
+        }
+        .item-price {
+            font-size: 1.1em;
+            color: #388e3c;
+        }
+        .quantity-input {
+            width: 50px;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .order-button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+        .order-button:hover {
+            background-color: #b71c1c;
+        }
+        .order-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>KFC Order Now</h1>
+</header>
+
+<div class="order-container">
+    <div class="menu-item">
+        <div class="item-title">Zinger Burger</div>
+        <div class="item-price">$10.99</div>
+        <input type="number" class="quantity-input" min="0" value="0" id="original-recipe-quantity">
+    </div>
+
+    <div class="menu-item">
+        <div class="item-title">Extra Crispy Chicken</div>
+        <div class="item-price">$11.99</div>
+        <input type="number" class="quantity-input" min="0" value="0" id="extra-crispy-quantity">
+    </div>
+
+    <div class="menu-item">
+        <div class="item-title">Chicken Bucket</div>
+        <div class="item-price">$31.99</div>
+        <input type="number" class="quantity-input" min="0" value="0" id="mashed-potatoes-quantity">
+    </div>
+
+    <div class="menu-item">
+        <div class="item-title">Hot Wings</div>
+        <div class="item-price">$21.99</div>
+        <input type="number" class="quantity-input" min="0" value="0" id="coleslaw-quantity">
+    </div>
+
+    <button class="order-button" onclick="calculateOrder()">Place Order</button>
+
+    <div class="order-summary" id="order-summary" style="display: none;">
+        <h3>Order Summary</h3>
+        <div id="summary-details"></div>
+        <div id="total-price"></div>
+    </div>
+</div>
+
+<script>
+    function calculateOrder() {
+        const originalRecipeQuantity = document.getElementById('original-recipe-quantity').value;
+        const extraCrispyQuantity = document.getElementById('extra-crispy-quantity').value;
+        const mashedPotatoesQuantity = document.getElementById('mashed-potatoes-quantity').value;
+        const coleslawQuantity = document.getElementById('coleslaw-quantity').value;
+
+        const originalRecipePrice = 10.99;
+        const extraCrispyPrice = 11.99;
+        const mashedPotatoesPrice = 3.99;
+        const coleslawPrice = 2.99;
+
+        const totalPrice = (originalRecipeQuantity * originalRecipePrice) +
+                           (extraCrispyQuantity * extraCrispyPrice) +
+                           (mashedPotatoesQuantity * mashedPotatoesPrice) +
+                           (coleslawQuantity * coleslawPrice);
+
+        let summaryDetails = '';
+        if (originalRecipeQuantity > 0) {
+            summaryDetails += `Original Recipe Chicken: ${originalRecipeQuantity} x $${originalRecipePrice.toFixed(2)}<br>`;
+        }
+        if (extraCrispyQuantity > 0) {
+            summaryDetails += `Extra Crispy Chicken: ${extraCrispyQuantity} x $${extraCrispyPrice.toFixed(2)}<br>`;
+        }
+        if (mashedPotatoesQuantity > 0) {
+            summaryDetails += `Mashed Potatoes: ${mashedPotatoesQuantity} x $${mashedPotatoesPrice.toFixed(2)}<br>`;
+        }
+        if (coleslawQuantity > 0) {
+            summaryDetails += `Coleslaw: ${coleslawQuantity} x $${coleslawPrice.toFixed(2)}<br>`;
+        }
+
+        document.getElementById('summary-details').innerHTML = summaryDetails || 'No items selected.';
+        document.getElementById('total-price').innerHTML = `Total Price: $${totalPrice.toFixed(2)}`;
+        document.getElementById('order-summary').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
+
+
